@@ -6,8 +6,7 @@ import pandas as pd
 
 
 # Initialize connection.
-# Uses st.experimental_singleton to only run once.
-@st.experimental_singleton
+@st.cache(allow_output_mutation=True)
 def init_connection():
     return psycopg2.connect(**st.secrets["postgres"])
 
