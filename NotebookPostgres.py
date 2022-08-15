@@ -46,7 +46,8 @@ Note=st.text_input("What's your note?", "Note")
 
 #Record data into database
 cur = conn.cursor()
-cur.execute("INSERT INTO notebook (Date , NoteType, NoteTitle, Note) VALUES (%s, %s, %s, %s);", (Date, NoteType, NoteTitle, Note,))
+#cur.execute("INSERT INTO notebook (Date , NoteType, NoteTitle, Note) VALUES (%s, %s, %s, %s);", (Date, NoteType, NoteTitle, Note))
+cur.execute("INSERT INTO notebook (Date , NoteType, NoteTitle, Note) VALUES (%s, %s, %s, %s);", ("test", "test1", "test2", "test3"))
 #cur.execute('INSERT INTO Notes (Date , NoteType, NoteTitle, Note) VALUES (?, ?, ?, ?)',
 #(Date, NoteType, NoteTitle, Note))
 conn.commit()
