@@ -9,7 +9,7 @@ import pandas as pd
 # Uses st.experimental_singleton to only run once.
 @st.experimental_singleton
 def init_connection():
-    return psycopg2.connect(**st.secrets["postgres"])
+    return psycopg2.connect(**st.secrets["streamlit"])
 
 conn = init_connection()
 
@@ -46,7 +46,7 @@ Note=st.text_input("What's your note?", "Note")
 
 #Record data into database
 cur = conn.cursor()
-cur.execute("INSERT INTO notebook ("Date" , "NoteType", "NoteTitle", "Note") VALUES (%s, %s, %s, %s);", (Date, NoteType, NoteTitle, Note))
+cur.execute("INSERT INTO notebook (Date , NoteType, NoteTitle, Note) VALUES (%s, %s, %s, %s);", (Date, NoteType, NoteTitle, Note))
 
 
 #cur.execute('INSERT INTO Notes (Date , NoteType, NoteTitle, Note) VALUES (?, ?, ?, ?)',
