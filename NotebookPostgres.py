@@ -47,20 +47,20 @@ Note=st.text_input("What's your note?", "Note")
 #Record data into database
 cur = conn.cursor()
 cur.execute("INSERT INTO inventory (name, quantity) VALUES (%s, %s);", (Note, NoteTitle))
-
+conn.commit()
 
 #cur.execute('INSERT INTO Notes (Date , NoteType, NoteTitle, Note) VALUES (?, ?, ?, ?)',
 #(Date, NoteType, NoteTitle, Note))
-conn.commit()
+
 
 #publish database
 #cur = conn.cursor()
 #cur.execute('SELECT Date, NoteType, NoteTitle, Note FROM Notes ORDER BY id DESC LIMIT 100')
-df = pd.read_sql('SELECT Date, NoteType, NoteTitle, Note FROM Notes ORDER BY id DESC LIMIT 100', conn)
-st.dataframe(df)
+#df = pd.read_sql('SELECT Date, NoteType, NoteTitle, Note FROM Notes ORDER BY id DESC LIMIT 100', conn)
+#st.dataframe(df)
 
 #@st.cache
-def convert_df(df):
+'''def convert_df(df):
      # IMPORTANT: Cache the conversion to prevent computation on every rerun
      download = pd.read_sql('SELECT Date, NoteType, NoteTitle, Note FROM Notes ORDER BY id DESC', conn)
      return download.to_csv().encode('utf-8')
@@ -72,4 +72,4 @@ st.download_button(
     data=csv,
     file_name='Notebook.csv',
     mime='text/csv',
-)
+)'''
