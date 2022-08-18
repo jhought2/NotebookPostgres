@@ -9,7 +9,7 @@ import pandas as pd
 # Uses st.experimental_singleton to only run once.
 @st.experimental_singleton
 def init_connection():
-    return psycopg2.connect(**st.secrets["streamlit"])
+    return psycopg2.connect(**st.secrets["postgres"])
 
 conn = init_connection()
 
