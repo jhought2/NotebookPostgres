@@ -15,18 +15,6 @@ conn = init_connection()
 conn.autocommit = True
 
 
-# Uses st.experimental_memo to only rerun when the query changes or after 10 min.
-'''@st.experimental_memo(ttl=600)
-def run_query(query):
-    with conn.cursor() as cur:
-        cur.execute(query)
-        return cur.fetchall()
-
-rows = run_query("SELECT * from notebook;")
-
-# Print results.
-for row in rows:
-    st.write(f"{row[0]} has a :{row[1]}:")'''
 
 
 
@@ -61,9 +49,9 @@ cur.execute("INSERT INTO notebook (notetype, date, notetitle, note) VALUES (%s, 
 #st.dataframe(df)
 
 #@st.cache
-'''def convert_df(df):
+def convert_df(df):
      # IMPORTANT: Cache the conversion to prevent computation on every rerun
-     download = pd.read_sql('SELECT Date, NoteType, NoteTitle, Note FROM Notes ORDER BY id DESC', conn)
+     download = pd.read_sql('SELECT Date, NoteType, NoteTitle, Note FROM Notes ORDER BY id date', conn)
      return download.to_csv().encode('utf-8')
 
 csv = convert_df(df)
@@ -73,4 +61,4 @@ st.download_button(
     data=csv,
     file_name='Notebook.csv',
     mime='text/csv',
-)'''
+)
