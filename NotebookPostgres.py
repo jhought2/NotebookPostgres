@@ -44,7 +44,7 @@ cur.execute("INSERT INTO notebook (notetype, date, notetitle, note) VALUES (%s, 
 
 #publish database
 cur = conn.cursor()
-cur.execute('SELECT Date, NoteType, NoteTitle, Note FROM Notes ORDER BY id DESC LIMIT 100')
+cur.execute('SELECT Date, NoteType, NoteTitle, Note FROM Notebook ORDER BY id DESC LIMIT 100')
 df = pd.read_sql('SELECT Date, NoteType, NoteTitle, Note FROM Notebook ORDER BY date DESC LIMIT 100', conn)
 st.dataframe(df)
 
