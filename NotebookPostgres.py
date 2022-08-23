@@ -45,13 +45,13 @@ cur.execute("INSERT INTO notebook (notetype, date, notetitle, note) VALUES (%s, 
 #publish database
 cur = conn.cursor()
 cur.execute('SELECT Date, NoteType, NoteTitle, Note FROM Notebook ORDER BY id DESC LIMIT 100')
-df = pd.read_sql('SELECT Date, NoteType, NoteTitle, Note FROM Notebook ORDER BY date DESC LIMIT 100', conn)
+df = pd.read_sql('SELECT Date, NoteType, NoteTitle, Note FROM Notebook ORDER BY id DESC LIMIT 100', conn)
 st.dataframe(df)
 
 #@st.cache
 def convert_df(df):
      # IMPORTANT: Cache the conversion to prevent computation on every rerun
-     download = pd.read_sql('SELECT Date, NoteType, NoteTitle, Note FROM Notebook ORDER BY date', conn)
+     download = pd.read_sql('SELECT Date, NoteType, NoteTitle, Note FROM Notebook ORDER BY id DESC', conn)
      return download.to_csv().encode('utf-8')
 
 csv = convert_df(df)
