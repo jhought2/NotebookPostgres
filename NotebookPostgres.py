@@ -35,6 +35,7 @@ Note=st.text_input("What's your note?", "Note")
 
 #Record data into database
 cur = conn.cursor()
+@st.experimental_singleton
 cur.execute("INSERT INTO notebook (notetype, date, notetitle, note) VALUES (%s, %s, %s, %s);", (NoteType, Date, NoteTitle, Note))
 #conn.commit()
 
